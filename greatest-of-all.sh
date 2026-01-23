@@ -21,4 +21,4 @@ do
     fi
 done
 
-echo "The largest number is $max"
+echo "The largest number is: $max"
