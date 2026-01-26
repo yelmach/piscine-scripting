@@ -2,7 +2,9 @@ def clean_list(list):
     if not list:
         return list
     
-    if 'milk' not in list:
-        list.append('milk')
+    cleaned = [item.strip().capitalize() for item in list]
     
-    return [f"{i}/ {item.strip().capitalize()}" for i, item in enumerate(list, start=1)]  
+    if "Milk" not in cleaned:
+        cleaned.append("Milk")
+    
+    return [f"{i}/ {item}" for i, item in enumerate(cleaned, start=1)]
