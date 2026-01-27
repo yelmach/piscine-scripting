@@ -7,15 +7,16 @@ class User:
 def create_new_user(json_string):
     data = json.loads(json_string)
     
-    new_user = User()
+    if "username" in data and "email" in data:
+        new_user = User()
+        new_user.username = data["username"]
+        new_user.email = data["email"]
+        return new_user
     
-    new_user.username = data.get("username")
-    new_user.email = data.get("email")
-    
-    return new_user
+    return User()
     
 def user_to_json(user_obj):
-    if user_obj.username is None and user_obj.email is None:
+    if user_obj.username == 'user' and user_obj.email == 'something@mail.com':
         return json.dumps({})
     
     user_dict = {
