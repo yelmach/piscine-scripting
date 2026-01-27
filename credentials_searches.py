@@ -13,16 +13,20 @@ def find_keys(data, found_credentials):
         for item in data:
             find_keys(item, found_credentials)
 
-
 def credentials_search():
     filename = "logs.json"
     
     if not os.path.exists(filename):
         return
 
-    with open(filename, 'r') as file:
-        content = file.read()
-        data = json.loads(content)
+    try:
+        with open(filename, 'r') as file:
+            content = file.read()
+            if not content.strip():
+                return
+            data = json.loads(content)
+    except (json.JSONDecodeError, IOError):
+        return
 
     found_credentials = {}
     find_keys(data, found_credentials)
